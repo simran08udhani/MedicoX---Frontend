@@ -1,0 +1,30 @@
+/* Header container */
+.header-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 10px; /* Adjust spacing below Navbar */
+}
+
+/* Container to align the line and logo */
+.line-container {
+  display: flex;
+  align-items: center;
+  width: 80%;
+  position: relative;
+}
+
+/* Thin straight line */
+.line {
+  flex-grow: 1;
+  height: 2px;
+  background-color: white; /* Change color if needed */
+  position: absolute;
+}
+
+/* Logo in front of the line */
+
+
+/* Footer Styles */

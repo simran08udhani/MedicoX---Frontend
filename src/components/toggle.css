@@ -1,0 +1,85 @@
+.theme-toggle-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+  }
+  
+  /* The switch - the box around the slider */
+  .toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 74px;
+    height: 34px;
+  }
+  
+  /* Hide default HTML checkbox */
+  .toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  /* The slider */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #f8f9fa;
+    transition: .4s;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5px;
+  }
+  
+  .toggle-circle {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+    z-index: 2;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  }
+  
+  input:checked + .slider {
+    background-color: #363636;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #2c3e50;
+  }
+  
+  input:checked + .slider .toggle-circle {
+    transform: translateX(40px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  /* Icon styling */
+  .theme-icon {
+    height: 16px;
+    width: 16px;
+    z-index: 1;
+  }
+  
+  .sun-icon {
+    color: #f39c12;
+    margin-left: 4px;
+  }
+  
+  .moon-icon {
+    color: #f8f9fa;
+    margin-right: 4px;
+  }

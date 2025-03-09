@@ -1,0 +1,131 @@
+/* Global Styles */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* Navbar Styles */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 30px;
+  background-color:white; /* Dark turquoise */
+  color: white;
+  transition: background 0.3s ease, color 0.3s ease;
+  height: 50px;
+  position: relative; /* To position the divider correctly */
+}
+
+/* Light Mode Navbar */
+.navbar.light {
+  background-color: white;
+  color: black;
+}
+
+/* Horizontal Rule (Divider) Styling */
+.navbar-divider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  border: none;
+  border-top: 3px solid #fff; /* White color divider */
+  z-index: -1; /* Ensures it stays behind the logo */
+  margin: 0;
+
+}
+
+/* Logo Section */
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Ensures logo is aligned to the left */
+  flex: 1;
+  position: relative; /* Ensures the logo stays above the divider */
+  max-width: fit-content;
+}
+
+.logo-img {
+  height: 50px; /* Adjusted for better navbar balance */
+  width: auto;
+  cursor: pointer;
+}
+
+/* Navigation Links */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+
+.navbar.light .nav-links li a {
+  color: black;
+}
+
+/* Navigation Buttons */
+.nav-buttons {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  position: absolute;
+  right:2%;
+  transform: translateY(-25%);
+}
+
+/* Sign Up & Sign In Buttons */
+.signup-btn {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.signin-btn {
+  background: #6FCAC7; /* Light turquoise */
+  padding: 8px 15px;
+  border-radius: 20px;
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.signin-btn:hover {
+  background: #5ab0ad;
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: white;
+}
+
+.navbar.light .theme-toggle {
+  color: #003840;
+}
+
+/* Light Mode */
+.light-mode {
+  background: #F5F5F5;
+  color: black;
+}
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+.divide{
+  width: 100%;
+  margin-top: 20px;
+}
+

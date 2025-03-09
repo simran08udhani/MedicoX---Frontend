@@ -1,0 +1,211 @@
+/* Container Styling */
+body{
+  background-color: #176f6f;
+}
+body.light-mode{
+  background-color: white;
+}
+.upload-container {
+  text-align: center;
+  padding: 20px;
+  background: #176f6f;
+  color: white;
+  position: relative;
+  margin-right: auto;
+  margin-left: auto;
+  width: 100%;
+}
+
+/* Scan Uploader Section */
+.scan-uploader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  border: 2px dashed white;
+  background: #176f6f;
+  margin: 30px auto;
+  border-radius: 15px;
+  width: 80%;
+  max-width: 1000px;
+  position: relative;
+  height: 350px;
+}
+
+.scan-type {
+  flex: 1;
+  padding: 20px;
+}
+
+.upload-section {
+  flex: 3;
+  padding: 20px;
+  text-align: center;
+}
+
+.divider {
+  width: 2px;
+  height: 350px;
+  background: white;
+  border-left: 2px dashed white;
+  margin: 0 20px;
+}
+
+/* Import File Button */
+.import-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 20px;
+  width: 60%;
+  max-width: 300px;
+  margin: 15px auto;
+  justify-content: center;
+}
+
+.import-btn:hover {
+  background: #0056b3;
+}
+
+/* Upload Button Outside Box */
+/* Upload Button - Positioned Below Import Button */
+.upload-btn {
+  display: block;
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 20px;
+  width: 60%;
+  max-width: 300px;
+  margin: 15px auto;
+}
+
+.upload-btn:hover {
+  background: #218838;
+}
+
+
+
+/* Form, Disclaimer & Result Section */
+.form-container, .disclaimer, .result-container {
+  margin-top: 20px;
+  padding: 20px;
+  background: #ffffff;
+  color: #333;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Input Fields and Buttons */
+input,select, button {
+  display: block;
+  margin: 10px auto;
+  padding: 10px;
+  width: 80%;
+  max-width: 400px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+button {
+  background: #28a745;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+button:hover {
+  background: #218838;
+}
+
+/* Scan Image */
+.scan-image {
+  width: 50%;
+  margin-top: 10px;
+  border: 2px solid white;
+  border-radius: 10px;
+}
+
+/* Progress Bar */
+.progress-bar {
+  width: 80%;
+  max-width: 1000px;
+  background: #ddd;
+  height: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 10px auto;
+}
+
+.progress {
+  height: 100%;
+  background: #28a745;
+  text-align: center;
+  color: white;
+  line-height: 20px;
+}
+.upload-btn-container {
+  position: relative;
+  text-align: center;
+}
+
+.tooltip {
+  display: inline-block;
+  background-color: rgba(255, 0, 0, 0.8);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  white-space: nowrap;
+  animation: fadeIn 0.3s ease-in-out;
+}
+.scan-label{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 10px;
+  padding-left: 13px;
+}
+.or{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+  max-width: 150px;
+  margin: auto;
+}
+.or hr{
+  flex: 1;
+ 
+}
+input[type ="radio"]{
+  margin: 0;
+  display: inline;
+  width: auto;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
