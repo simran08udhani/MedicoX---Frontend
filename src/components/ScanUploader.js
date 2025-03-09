@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import "./ScanUploader.css";
 import { HiOutlineDownload } from "react-icons/hi";
+import { FaAngleDoubleRight } from "react-icons/fa";
 import { Tooltip as ReactTooltip } from "react-tooltip";
-import toast from 'react-hot-toast';
+import toast from "react-hot-toast";
+
 const ScanUploader = () => {
   const [selectedScan, setSelectedScan] = useState("");
   const [progress, setProgress] = useState(0);
@@ -11,43 +13,55 @@ const ScanUploader = () => {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
-    age: "",
+    dob: "",
     gender: "",
   });
   const [isChecked, setIsChecked] = useState(false);
   const [dragging, setDragging] = useState(false);
   const [showTooltip, setShowTooltip] = useState(false);
 
+  const handleSelectedFile = (file) => {
+    if (!selectedScan) {
+      toast.error(
+        "Oops! Looks like you haven't selected a scan type. Please select the type of scan first.",
+        { style: { maxWidth: "700px" } }
+      );
+      return;
+    }
+
+    const validFormats = ["jpg", "jpeg", "dicom"];
+    const fileName = file.name;
+    const fileType = file.name.split(".").pop().toLowerCase();
+    const validNamePattern = new RegExp(`\\w+_${selectedScan}$`);
+    const textLabel = { Xray: "X-Ray", MRI: "MRI", CTScan: "CT Scan" };
+
+    if (!validNamePattern.test(fileName.split(".")[0])) {
+      toast.error(
+        `Seems like you have chosen ${textLabel[selectedScan]}. Please rename the file as User_Name_${selectedScan} and try uploading the file again.`,
+        { style: { maxWidth: "900px" } }
+      );
+      return;
+    }
+
+    if (!validFormats.includes(fileType)) {
+      toast.error(
+        "Oops! We only support JPG, JPEG, and DICOM files. Please try again.",
+        { style: { maxWidth: "700px" } }
+      );
+      return;
+    }
+
+    setFile(file);
+    setShowTooltip(false);
+  };
+
   // Handle file selection (import)
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     if (!file) return;
     event.target.value = "";
-    if (!selectedScan) {
-      toast.error("Oops! Looks like you haven't selected a scan type. Please select the type of scan first.",{style:{maxWidth:"700px"}});
-      return;
-    }
-  
-    const validFormats = ["jpg", "jpeg", "dicom"];
-    const fileName = file.name;
-    const fileType = file.name.split(".").pop().toLowerCase();
-    const validNamePattern = new RegExp(`\\w+_${selectedScan}$`);
-    const textLabel = {"Xray": "X-Ray", "MRI": "MRI", "CTScan": "CT Scan"}
-  
-    if (!validNamePattern.test(fileName.split(".")[0])) {
-      toast.error(`Seems like you have chosen ${textLabel[selectedScan]}. Please rename the file as User_Name_${selectedScan} and try uploading the file again.`,{style:{maxWidth:"900px"}});
-      return;
-    }
-  
-    if (!validFormats.includes(fileType)) {
-      toast.error("Oops! We only support JPG, JPEG, and DICOM files. Please try again.",{style:{maxWidth:"700px"}});
-      return;
-    }
-  
-    setFile(file);
-    setShowTooltip(false);
+    handleSelectedFile(file);
   };
-  
 
   // Drag & Drop Handlers
   const handleDragOver = (event) => {
@@ -63,8 +77,7 @@ const ScanUploader = () => {
     event.preventDefault();
     setDragging(false);
     if (event.dataTransfer.files.length > 0) {
-      setFile(event.dataTransfer.files[0]);
-      setShowTooltip(false); // Hide tooltip if file is selected
+      handleSelectedFile(event.dataTransfer.files[0]);
     }
   };
 
@@ -99,6 +112,22 @@ const ScanUploader = () => {
     }
   };
 
+  const calculateAge = (birthdate) => {
+    const birthDate = new Date(birthdate);
+    const today = new Date();
+
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const monthDiff = today.getMonth() - birthDate.getMonth();
+    const dayDiff = today.getDate() - birthDate.getDate();
+
+    // Adjust if birthdate hasn't occurred yet this year
+    if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
+      age--;
+    }
+
+    return age;
+  };
+
   return (
     <div className="upload-container">
       {/* Progress Bar */}
@@ -110,11 +139,14 @@ const ScanUploader = () => {
         <div className="scan-uploader">
           {/* Left Section: Scan Type Selection */}
           <div className="scan-type">
-            <h3><span style={{color:"red"}}>*</span> Select the type of scan</h3>
-            
+            <h3>
+              <span style={{ color: "red" }}>*</span>
+              <span>Select the type of scan</span>
+            </h3>
+
             <label className="scan-label">
               <input
-              data-tooltip-id="ct-scan-tooltip"
+                data-tooltip-id="ct-scan-tooltip"
                 type="radio"
                 name="scanType"
                 value="CTScan"
@@ -124,7 +156,7 @@ const ScanUploader = () => {
             </label>
             <label className="scan-label">
               <input
-              data-tooltip-id="mri-tooltip"
+                data-tooltip-id="mri-tooltip"
                 type="radio"
                 name="scanType"
                 value="MRI"
@@ -134,7 +166,7 @@ const ScanUploader = () => {
             </label>
             <label className="scan-label">
               <input
-              data-tooltip-id="x-ray-tooltip"
+                data-tooltip-id="x-ray-tooltip"
                 type="radio"
                 name="scanType"
                 value="Xray"
@@ -156,7 +188,11 @@ const ScanUploader = () => {
           >
             <h2>Drag and drop files here</h2>
             <p>Supported format: JPG, JPEG or DICOM</p>
-            <div className="or"><hr></hr><p>or</p><hr></hr></div>
+            <div className="or">
+              <hr></hr>
+              <p>or</p>
+              <hr></hr>
+            </div>
             <label htmlFor="file-upload" className="import-btn">
               <HiOutlineDownload />
               Import a File
@@ -167,16 +203,18 @@ const ScanUploader = () => {
               accept=".png, .jpg, .jpeg, .dicom"
               onChange={handleFileChange}
               style={{ display: "none" }}
-               // Disable the file input if no scan type is selected
+              // Disable the file input if no scan type is selected
             />
-            
+
             {/* Display Selected File Name */}
             {file && <p className="file-name">📂 {file.name}</p>}
           </div>
 
           {/* Tooltip to prompt user to select a scan type after clicking "Import a File" */}
           {showTooltip && !selectedScan && (
-            <span className="tooltip">⚠️ Please select a scan type before uploading a file.</span>
+            <span className="tooltip">
+              ⚠️ Please select a scan type before uploading a file.
+            </span>
           )}
         </div>
       )}
@@ -192,41 +230,71 @@ const ScanUploader = () => {
 
       {step === 2 && (
         <div className="form-container">
-          <h2>Patient Details</h2>
-          <input
-            type="text"
-            name="firstName"
-            placeholder="First Name"
-            value={formData.firstName}
-            onChange={handleChange}
-          />
-          <input
-            type="text"
-            name="lastName"
-            placeholder="Last Name"
-            value={formData.lastName}
-            onChange={handleChange}
-          />
-          <input
-            type="number"
-            name="age"
-            placeholder="Age"
-            value={formData.age}
-            onChange={handleChange}
-          />
-          <select name="gender" value={formData.gender} onChange={handleChange}>
-            <option value="">Select Gender</option>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-            <option value="Other">Other</option>
-          </select>
-          <button onClick={handleNext}>Next</button>
+          <h2>Personal Information</h2>
+          <h3>About you</h3>
+          <div className="patient-form">
+            <div>
+              {" "}
+              <label>First name</label>{" "}
+              <input
+                type="text"
+                name="firstName"
+                placeholder="First Name"
+                value={formData.firstName}
+                onChange={handleChange}
+              />
+            </div>
+            <div>
+              <label>Last name</label>{" "}
+              <input
+                type="text"
+                name="lastName"
+                placeholder="Last Name"
+                value={formData.lastName}
+                onChange={handleChange}
+              />
+            </div>
+            <div>
+              <label>Date of Birth</label>
+              <input
+                type="date"
+                name="dob"
+                placeholder="Birthdate"
+                onChange={handleChange}
+              />
+            </div>
+
+            <div>
+              <label>Gender</label>
+              <select
+                name="gender"
+                value={formData.gender}
+                onChange={handleChange}
+              >
+                <option
+                  value="default"
+                  id="select-gender"
+                  style={{ color: "#999" }}
+                >
+                  Select Gender
+                </option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+          </div>
+          <button onClick={handleNext}>
+            Next <FaAngleDoubleRight size={16} />
+          </button>
         </div>
       )}
 
       {step === 3 && (
         <div className="disclaimer">
-          <p>⚠️ This diagnosis is automated and should be reviewed by a doctor.</p>
+          <p>
+            ⚠️ This diagnosis is automated and should be reviewed by a doctor.
+          </p>
           <label>
             <input
               type="checkbox"
@@ -243,13 +311,22 @@ const ScanUploader = () => {
           <h2>Analyzed Report</h2>
           {/* Display Patient Details */}
           <h3>Patient Information</h3>
-          <p><strong>First Name:</strong> {formData.firstName}</p>
-          <p><strong>Last Name:</strong> {formData.lastName}</p>
-          <p><strong>Age:</strong> {formData.age}</p>
-          <p><strong>Gender:</strong> {formData.gender}</p>
-          
+          <p>
+            <strong>Name:</strong> {formData.firstName} {formData.lastName}
+          </p>
+          <p>
+            <strong>Age:</strong> {calculateAge(formData.dob)}
+          </p>
+          <p>
+            <strong>Gender:</strong> {formData.gender}
+          </p>
+
           {/* Display the uploaded file */}
-          <img src={URL.createObjectURL(file)} alt="Uploaded Scan" className="scan-image" />
+          <img
+            src={URL.createObjectURL(file)}
+            alt="Uploaded Scan"
+            className="scan-image"
+          />
           <div className="report">
             <p>🩺 Diagnosis Result: **Your AI Model’s Output Here**</p>
           </div>
@@ -261,23 +338,22 @@ const ScanUploader = () => {
         variant="info"
         content="Save file as User_Name_CTScan"
         openOnClick={true}
-      />
+      />
       <ReactTooltip
         id="mri-tooltip"
         place="bottom"
         variant="info"
         content="Save file as User_Name_MRI"
         openOnClick={true}
-      />
+      />
       <ReactTooltip
         id="x-ray-tooltip"
         place="bottom"
         variant="info"
         content="Save file as User_Name_Xray"
         openOnClick={true}
-      />
+      />
     </div>
-    
   );
 };
 
