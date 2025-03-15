@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./ScanUploader.css";
 import { HiOutlineDownload } from "react-icons/hi";
 import { FaAngleDoubleRight } from "react-icons/fa";
+import { FiAlertTriangle } from "react-icons/fi";
 import { Tooltip as ReactTooltip } from "react-tooltip";
 import toast from "react-hot-toast";
 
@@ -88,6 +89,14 @@ const ScanUploader = () => {
       setTimeout(() => setShowTooltip(false), 2000); // Hide tooltip after 2 seconds
       return;
     }
+
+    if (!file) {
+      toast.error("Please select a file before proceeding.", {
+        style: { maxWidth: "700px" },
+      });
+      return;
+    }
+
     setProgress(20);
     setStep(2);
   };
@@ -99,6 +108,30 @@ const ScanUploader = () => {
 
   // Handle form submission
   const handleNext = () => {
+    if (!formData.firstName) {
+      toast.error("Please write First Name.", {
+        style: { maxWidth: "700px" },
+      });
+      return;
+    }
+    if (!formData.lastName) {
+      toast.error("Please write Last Name.", {
+        style: { maxWidth: "700px" },
+      });
+      return;
+    }
+    if (!formData.dob) {
+      toast.error("Please select your DOB.", {
+        style: { maxWidth: "700px" },
+      });
+      return;
+    }
+    if (!formData.gender || formData.gender === "default") {
+      toast.error("Please select your Gender.", {
+        style: { maxWidth: "700px" },
+      });
+      return;
+    }
     setProgress(50);
     setStep(3);
   };
@@ -106,10 +139,17 @@ const ScanUploader = () => {
   // Handle checkbox change
   const handleCheckboxChange = (event) => {
     setIsChecked(event.target.checked);
-    if (event.target.checked) {
-      setProgress(100);
-      setStep(4);
+  };
+
+  const submitFinal = () => {
+    if (!isChecked) {
+      toast.error("Please select the checkbox to proceed.", {
+        style: { maxWidth: "700px" },
+      });
+      return;
     }
+    setProgress(100);
+    setStep(4);
   };
 
   const calculateAge = (birthdate) => {
@@ -271,11 +311,7 @@ const ScanUploader = () => {
                 value={formData.gender}
                 onChange={handleChange}
               >
-                <option
-                  value="default"
-                  id="select-gender"
-                  style={{ color: "#999" }}
-                >
+                <option value="default" id="select-gender">
                   Select Gender
                 </option>
                 <option value="Male">Male</option>
@@ -292,43 +328,55 @@ const ScanUploader = () => {
 
       {step === 3 && (
         <div className="disclaimer">
-          <p>
-            ⚠️ This diagnosis is automated and should be reviewed by a doctor.
-          </p>
-          <label>
-            <input
-              type="checkbox"
-              checked={isChecked}
-              onChange={handleCheckboxChange}
-            />
-            I understand and accept the disclaimer.
-          </label>
+          <div>
+            <FiAlertTriangle size={360} />
+          </div>
+
+          <div>
+            <h2>Disclaimer</h2>
+            <div className="disclaimer-form">
+              <input
+                type="checkbox"
+                checked={isChecked}
+                onChange={handleCheckboxChange}
+              />
+              <label>
+                This diagnosis is automated and should be reviewed by a medical
+                professional.{" "}
+              </label>
+            </div>
+            <button onClick={submitFinal}>Confirm</button>
+          </div>
         </div>
       )}
 
       {step === 4 && file && (
         <div className="result-container">
-          <h2>Analyzed Report</h2>
-          {/* Display Patient Details */}
-          <h3>Patient Information</h3>
-          <p>
-            <strong>Name:</strong> {formData.firstName} {formData.lastName}
-          </p>
-          <p>
-            <strong>Age:</strong> {calculateAge(formData.dob)}
-          </p>
-          <p>
-            <strong>Gender:</strong> {formData.gender}
-          </p>
-
-          {/* Display the uploaded file */}
-          <img
-            src={URL.createObjectURL(file)}
-            alt="Uploaded Scan"
-            className="scan-image"
-          />
-          <div className="report">
-            <p>🩺 Diagnosis Result: **Your AI Model’s Output Here**</p>
+          <div className="left">
+            {" "}
+            <img
+              src={URL.createObjectURL(file)}
+              alt="Uploaded Scan"
+              className="scan-image"
+            />
+          </div>
+          <div className="right">
+            <div className="report">
+              <h2>Report</h2>
+              <div className="patient-info">
+                <p>
+                  <strong>Name:</strong> {formData.firstName}{" "}
+                  {formData.lastName}
+                </p>
+                <p>
+                  <strong>Age:</strong> {calculateAge(formData.dob)}
+                </p>
+                <p>
+                  <strong>Gender:</strong> {formData.gender}
+                </p>
+              </div>
+              <button id="download">Download Report</button>
+            </div>
           </div>
         </div>
       )}
@@ -338,6 +386,7 @@ const ScanUploader = () => {
         variant="info"
         content="Save file as User_Name_CTScan"
         openOnClick={true}
+        style={{ backgroundColor: "#fff7d6", color: "black" }}
       />
       <ReactTooltip
         id="mri-tooltip"
@@ -345,6 +394,7 @@ const ScanUploader = () => {
         variant="info"
         content="Save file as User_Name_MRI"
         openOnClick={true}
+        style={{ backgroundColor: "#fff7d6", color: "black" }}
       />
       <ReactTooltip
         id="x-ray-tooltip"
@@ -352,6 +402,7 @@ const ScanUploader = () => {
         variant="info"
         content="Save file as User_Name_Xray"
         openOnClick={true}
+        style={{ backgroundColor: "#fff7d6", color: "black" }}
       />
     </div>
   );

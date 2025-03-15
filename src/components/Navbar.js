@@ -6,10 +6,8 @@ import ThemeToggle from "./toggle";
 const Navbar = () => {
   return (
     <nav className={`navbar light`}>
-      {/* Horizontal Rule before the Logo */}
       <hr className="navbar-divider" />
 
-      {/* Clickable Website Logo */}
       <div className="navbar-logo">
         <img
           src={logo}

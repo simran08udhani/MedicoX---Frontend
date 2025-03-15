@@ -7,7 +7,7 @@ const ThemeToggle = () => {
   });
   const toggleTheme = () => {
     setDarkMode(!darkMode);
-    document.body.classList.toggle("light-mode");
+    document.body.classList.toggle("dark");
   };
 
   return (

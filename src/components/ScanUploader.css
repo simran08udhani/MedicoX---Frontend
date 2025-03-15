@@ -1,19 +1,20 @@
 /* Container Styling */
 body {
-  background-color: #176f6f;
+  background-color: #d8e5e1;
 }
-body.light-mode {
-  background-color: white;
+
+body.dark {
+  background-color: #ababab;
 }
+
 .upload-container {
   text-align: center;
   padding: 20px;
-  background: #176f6f;
+  background: #d8e5e1;
   color: white;
   position: relative;
   margin-right: auto;
   margin-left: auto;
-  width: 100%;
 }
 
 /* Scan Uploader Section */
@@ -60,12 +61,13 @@ body.light-mode {
 }
 
 /* Import File Button */
-.import-btn {
+.import-btn,
+.upload-btn {
   display: flex;
   align-items: center;
   gap: 10px;
-  background: #007bff;
-  color: white;
+  background: #fff7d6;
+  color: black;
   border: none;
   padding: 10px 20px;
   cursor: pointer;
@@ -76,27 +78,15 @@ body.light-mode {
   justify-content: center;
 }
 
-.import-btn:hover {
-  background: #0056b3;
+.import-btn:hover,
+.upload-btn:hover {
+  background: #f4e4a6;
 }
 
 /* Upload Button Outside Box */
 /* Upload Button - Positioned Below Import Button */
 .upload-btn {
-  display: block;
-  background: #007bff;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-  border-radius: 20px;
-  width: 60%;
-  max-width: 300px;
-  margin: 15px auto;
-}
-
-.upload-btn:hover {
-  background: #218838;
+  font-size: 15px;
 }
 
 /* Form, Disclaimer & Result Section */
@@ -169,8 +159,8 @@ button {
 }
 
 button {
-  background: #28a745;
-  color: white;
+  background: #fff7d6;
+  color: black;
   border: none;
   cursor: pointer;
   border-radius: 5px;
@@ -178,7 +168,7 @@ button {
 }
 
 button:hover {
-  background: #218838;
+  background: #f4e4a6;
 }
 
 /* Scan Image */
@@ -193,7 +183,7 @@ button:hover {
 .progress-bar {
   width: 80%;
   max-width: 1000px;
-  background: #ddd;
+  background: #02363d;
   height: 20px;
   border-radius: 10px;
   overflow: hidden;
@@ -202,7 +192,7 @@ button:hover {
 
 .progress {
   height: 100%;
-  background: #28a745;
+  background: rgb(54, 197, 186);
   text-align: center;
   color: white;
   line-height: 20px;
@@ -248,17 +238,85 @@ input[type="radio"] {
   margin: 0;
   display: inline;
   width: auto;
+  accent-color: #fff7d6;
 }
 
-.disclaimer label {
+.disclaimer {
+  display: flex;
+  gap: 2px;
+  align-items: center;
+}
+
+.disclaimer-form {
+  display: flex;
+  align-items: start;
+  font-size: 18.72px;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.disclaimer-form input {
+  max-width: fit-content;
+  margin: 0;
+  margin-top: 5px;
+}
+
+.result-container {
+  display: flex;
+  gap: 20px;
+}
+
+.result-container .left {
+  max-width: 50%;
+}
+
+.result-container .right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 8px;
+  padding-top: 14px;
+}
+
+.result-container .left img {
+  width: 503px;
+  height: 503px;
+  object-fit: cover;
+}
+
+.result-container .patient-info {
   display: flex;
   align-items: center;
-  gap: 2px;
+  gap: 30px;
   justify-content: center;
+  margin-bottom: 5px;
+  max-width: 90%;
+  margin-right: auto;
+  margin-left: auto;
 }
 
-.disclaimer label input {
-  max-width: fit-content;
+.result-container .right h2 {
+  margin-bottom: 10px;
+}
+
+.result-container .patient-info p {
+  outline: 2px solid;
+  padding: 10px;
+  border-radius: 5px;
+  min-width: fit-content;
+}
+
+.result-container .report {
+  flex: 1;
+  outline: 2px solid;
+  margin: 0 14px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+}
+
+#download {
+  margin-top: auto;
 }
 @keyframes fadeIn {
   from {
