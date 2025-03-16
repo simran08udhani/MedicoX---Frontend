@@ -1,12 +1,12 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import "./ScanUploader.css";
-import { HiOutlineDownload } from "react-icons/hi";
-import { FaAngleDoubleRight } from "react-icons/fa";
 import { FiAlertTriangle, FiUpload } from "react-icons/fi";
 import { Tooltip as ReactTooltip } from "react-tooltip";
-import html2canvas from "html2canvas";
-import jsPDF from "jspdf";
 import toast from "react-hot-toast";
+import { FaAngleDoubleRight } from "react-icons/fa";
+// import { HiOutlineDownload } from "react-icons/hi";
+// import html2canvas from "html2canvas";
+// import jsPDF from "jspdf";
 // import getBase64Image from "../utils/getBase64Image";
 
 const ScanUploader = () => {
@@ -23,7 +23,7 @@ const ScanUploader = () => {
   const [isChecked, setIsChecked] = useState(false);
   const [dragging, setDragging] = useState(false);
   const [showTooltip, setShowTooltip] = useState(false);
-  const reportRef = useRef(null);
+  // const reportRef = useRef(null);
 
   const handleSelectedFile = (file) => {
     if (!selectedScan) {
