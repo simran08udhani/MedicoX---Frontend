@@ -7,7 +7,7 @@ import { Tooltip as ReactTooltip } from "react-tooltip";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import toast from "react-hot-toast";
-import getBase64Image from "../utils/getBase64Image";
+// import getBase64Image from "../utils/getBase64Image";
 
 const ScanUploader = () => {
   const [selectedScan, setSelectedScan] = useState("");
