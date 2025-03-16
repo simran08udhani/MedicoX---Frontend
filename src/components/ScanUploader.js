@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "./ScanUploader.css";
 import { HiOutlineDownload } from "react-icons/hi";
 import { FaAngleDoubleRight } from "react-icons/fa";
-import { FiAlertTriangle } from "react-icons/fi";
+import { FiAlertTriangle, FiUpload } from "react-icons/fi";
 import { Tooltip as ReactTooltip } from "react-tooltip";
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
 import toast from "react-hot-toast";
+import getBase64Image from "../utils/getBase64Image";
 
 const ScanUploader = () => {
   const [selectedScan, setSelectedScan] = useState("");
@@ -20,6 +23,7 @@ const ScanUploader = () => {
   const [isChecked, setIsChecked] = useState(false);
   const [dragging, setDragging] = useState(false);
   const [showTooltip, setShowTooltip] = useState(false);
+  const reportRef = useRef(null);
 
   const handleSelectedFile = (file) => {
     if (!selectedScan) {
@@ -168,6 +172,34 @@ const ScanUploader = () => {
     return age;
   };
 
+  // const downloadPDF = async () => {
+  //   if (!reportRef.current) return;
+
+  //   try {
+  //     const logoBase64 = await getBase64Image("/logo.png"); // Convert logo to Base64 dynamically
+  //     console.log(logoBase64);
+
+  //     html2canvas(reportRef.current, { scale: 2 }).then((canvas) => {
+  //       const imgData = canvas.toDataURL("image/png");
+  //       const pdf = new jsPDF("p", "mm", "a4");
+  //       const imgWidth = 190;
+  //       const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+  //       // Add Logo (Centered at Top)
+  //       const logoWidth = 40;
+  //       const logoHeight = 20;
+  //       const logoX = (pdf.internal.pageSize.width - logoWidth) / 2;
+  //       pdf.addImage(logoBase64, "PNG", logoX, 10, logoWidth, logoHeight);
+
+  //       // Add Report Content Below Logo
+  //       pdf.addImage(imgData, "PNG", 10, 40, imgWidth, imgHeight);
+  //       pdf.save("report.pdf");
+  //     });
+  //   } catch (error) {
+  //     console.error("Error loading logo:", error);
+  //   }
+  // };
+
   return (
     <div className="upload-container">
       {/* Progress Bar */}
@@ -234,7 +266,7 @@ const ScanUploader = () => {
               <hr></hr>
             </div>
             <label htmlFor="file-upload" className="import-btn">
-              <HiOutlineDownload />
+              <FiUpload />
               Import a File
             </label>
             <input
@@ -375,7 +407,10 @@ const ScanUploader = () => {
                   <strong>Gender:</strong> {formData.gender}
                 </p>
               </div>
-              <button id="download">Download Report</button>
+              {/* <button id="download" onClick={downloadPDF}>
+                <HiOutlineDownload />
+                Download Report
+              </button> */}
             </div>
           </div>
         </div>

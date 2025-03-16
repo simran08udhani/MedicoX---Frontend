@@ -84,3 +84,19 @@ input:checked + .slider .toggle-circle {
   color: #02363d;
   margin-right: 4px;
 }
+
+@media (max-width: 767px) {
+  .toggle-switch {
+    width: 64px;
+    height: 28px;
+  }
+
+  .toggle-circle {
+    height: 20px;
+    width: 20px;
+  }
+
+  input:checked + .slider .toggle-circle {
+    transform: translateX(35px);
+  }
+}

@@ -142,3 +142,48 @@
 .dark .footer-logo.dark {
   display: block;
 }
+
+@media (max-width: 767px) {
+  .footer-content {
+    flex-direction: column;
+  }
+
+  .footer-left {
+    width: 100%;
+  }
+
+  .footer-left .footer-logo {
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .footer-left p {
+    text-align: justify;
+  }
+
+  .footer-right {
+    width: 100%;
+  }
+
+  .footer-right h3 {
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+  }
+
+  .footer-right .hr-container {
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .footer-right ul li {
+    max-width: fit-content;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .gradient-line {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}

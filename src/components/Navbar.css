@@ -56,12 +56,6 @@ body {
   max-width: fit-content;
 }
 
-.logo-img {
-  height: 50px; /* Adjusted for better navbar balance */
-  width: auto;
-  cursor: pointer;
-}
-
 /* Navigation Links */
 .nav-links {
   list-style: none;
@@ -142,4 +136,15 @@ html {
 
 .dark .divide {
   border-color: white;
+}
+
+.navbar-logo img {
+  cursor: pointer;
+  height: 160px;
+}
+
+@media (max-width: 767px) {
+  .navbar-logo img {
+    height: 120px;
+  }
 }

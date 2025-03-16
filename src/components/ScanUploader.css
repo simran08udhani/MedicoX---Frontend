@@ -123,8 +123,8 @@ button {
 .result-container {
   margin: 30px auto;
   padding: 20px;
-  background: #ffffff;
-  color: #333;
+  background: #176f6f;
+  color: white;
   border-radius: 10px;
   width: 80%;
   max-width: 1000px;
@@ -137,6 +137,7 @@ button {
 .dark .disclaimer,
 .dark .result-container {
   background-color: #c6dad4;
+  color: black;
 }
 
 .form-container {
@@ -182,38 +183,6 @@ input::placeholder {
   justify-content: center;
   gap: 2px;
 }
-
-/* button {
-  display: block;
-  margin: 10px auto;
-  padding: 10px;
-  width: 80%;
-  max-width: 400px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-}
-
-button {
-  background: #fff7d6;
-  color: black;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
-  padding: 10px;
-}
-
-.dark button {
-  background-color: #176f6f;
-  color: white;
-}
-
-button:hover {
-  background: #f4e4a6;
-}
-
-.dark button:hover {
-  background: #219f9f;
-} */
 
 /* Scan Image */
 .scan-image {
@@ -306,13 +275,13 @@ input[type="checkbox"] {
 }
 
 .radio-tooltip {
-  background-color: "#fff7d6";
-  color: black;
+  background-color: #fff7d6 !important;
+  color: black !important;
 }
 
 .dark .radio-tooltip {
-  background-color: #176f6f;
-  color: white;
+  background-color: #176f6f !important;
+  color: white !important;
 }
 
 .disclaimer {
@@ -390,11 +359,17 @@ input[type="checkbox"] {
   border-radius: 5px;
   display: flex;
   flex-direction: column;
+  background-color: white;
+  color: black;
 }
 
 #download {
   margin-top: auto;
+  display: flex;
+  gap: 4px;
+  align-items: center;
 }
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -403,5 +378,79 @@ input[type="checkbox"] {
   to {
     opacity: 1;
     transform: translateX(-50%) translateY(0);
+  }
+}
+
+@media (max-width: 767px) {
+  .scan-uploader {
+    flex-direction: column;
+    min-height: fit-content;
+  }
+
+  .scan-uploader .divider {
+    width: 100%;
+    height: 2px;
+    margin-bottom: 20px;
+  }
+
+  .scan-type {
+    margin-bottom: 20px;
+    padding: 0;
+  }
+
+  .upload-section {
+    padding: 0;
+  }
+
+  .patient-form {
+    grid-template-columns: 1fr;
+  }
+
+  .patient-form select {
+    width: 100%;
+  }
+
+  .disclaimer {
+    flex-direction: column;
+    height: 510px;
+    justify-content: center;
+  }
+
+  .disclaimer svg {
+    height: 200px;
+    width: 200px;
+  }
+
+  .result-container {
+    flex-direction: column;
+  }
+
+  .result-container .left {
+    width: 100%;
+    flex: 1;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .result-container .left img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+  }
+
+  .result-container .report .patient-info {
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 50px;
+  }
+
+  .result-container .patient-info p {
+    margin-bottom: 0;
+    flex: 1;
+    width: 100%;
+  }
+
+  #download {
+    gap: 2px;
   }
 }

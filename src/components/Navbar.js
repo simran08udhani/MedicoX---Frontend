@@ -13,14 +13,12 @@ const Navbar = () => {
         <img
           src={logo}
           alt="Website Logo"
-          style={{ cursor: "pointer", height: "160px" }}
           onClick={() => (window.location.href = "/")}
           className="light"
         />
         <img
           src={logoDark}
           alt="Website Logo"
-          style={{ cursor: "pointer", height: "160px" }}
           onClick={() => (window.location.href = "/")}
           className="dark"
         />

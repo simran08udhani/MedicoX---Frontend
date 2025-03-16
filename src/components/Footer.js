@@ -78,6 +78,7 @@ const Footer = () => {
         place="bottom"
         variant="info"
         content="LinkedIn"
+        className="radio-tooltip"
       />
     </footer>
   );
