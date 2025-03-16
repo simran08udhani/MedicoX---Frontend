@@ -2,6 +2,10 @@
   background-color: #b7dfd3;
 }
 
+.dark .footer {
+  background-color: #012328;
+}
+
 .footer-content {
   padding: 20px;
   display: flex;
@@ -27,6 +31,10 @@
   color: black;
 }
 
+.dark .footer-left p {
+  color: white;
+}
+
 .footer-right {
   text-align: left;
   margin-top: 30px;
@@ -38,6 +46,10 @@
   /* color: rgb(54, 197, 186); */
   color: black;
   margin-top: 0;
+}
+
+.dark .footer-right h3 {
+  color: white;
 }
 
 .footer-right ul {
@@ -60,10 +72,18 @@
   width: 200px;
 }
 
+.dark .footer-right a {
+  color: white;
+}
+
 .linkedin-icon {
   margin-left: 8px;
   font-size: 18px;
   color: black;
+}
+
+.dark .linkedin-icon {
+  color: white;
 }
 
 /* Copyright Section */
@@ -75,14 +95,23 @@
   background-color: #d8e5e1;
   padding-bottom: 20px;
   padding-top: 10px;
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
+
+.dark .footer-bottom {
+  background-color: #02363d;
+  color: white;
+}
+
 .hr-container {
   position: relative;
   width: 40%;
   height: 1px;
   margin-bottom: 20px;
   background-color: gray;
+}
+
+.dark .hr-container {
+  background-color: white;
 }
 
 .gradient-line {
@@ -100,4 +129,16 @@
   height: 70px;
   margin-bottom: 10px;
   margin: top -20px;
+}
+
+.footer-logo.dark {
+  display: none;
+}
+
+.dark .footer-logo.light {
+  display: none;
+}
+
+.dark .footer-logo.dark {
+  display: block;
 }

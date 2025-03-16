@@ -2,9 +2,7 @@ import { useState } from "react";
 import "./toggle.css";
 
 const ThemeToggle = () => {
-  const [darkMode, setDarkMode] = useState(() => {
-    return localStorage.getItem("theme") === "dark";
-  });
+  const [darkMode, setDarkMode] = useState(true);
   const toggleTheme = () => {
     setDarkMode(!darkMode);
     document.body.classList.toggle("dark");

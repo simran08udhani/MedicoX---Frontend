@@ -329,7 +329,7 @@ const ScanUploader = () => {
       {step === 3 && (
         <div className="disclaimer">
           <div>
-            <FiAlertTriangle size={360} />
+            <FiAlertTriangle size={300} />
           </div>
 
           <div>
@@ -386,7 +386,7 @@ const ScanUploader = () => {
         variant="info"
         content="Save file as User_Name_CTScan"
         openOnClick={true}
-        style={{ backgroundColor: "#fff7d6", color: "black" }}
+        className="radio-tooltip"
       />
       <ReactTooltip
         id="mri-tooltip"
@@ -394,7 +394,7 @@ const ScanUploader = () => {
         variant="info"
         content="Save file as User_Name_MRI"
         openOnClick={true}
-        style={{ backgroundColor: "#fff7d6", color: "black" }}
+        className="radio-tooltip"
       />
       <ReactTooltip
         id="x-ray-tooltip"
@@ -402,7 +402,7 @@ const ScanUploader = () => {
         variant="info"
         content="Save file as User_Name_Xray"
         openOnClick={true}
-        style={{ backgroundColor: "#fff7d6", color: "black" }}
+        className="radio-tooltip"
       />
     </div>
   );

@@ -1,11 +1,12 @@
 import React from "react";
-import "./Navbar.css"; // Import CSS for styling
-import logo from "../assets/logo2.png"; // Import your logo image
+import "./Navbar.css";
+import logo from "../assets/logo2.png";
+import logoDark from "../assets/logo-dark.png";
 import ThemeToggle from "./toggle";
 
 const Navbar = () => {
   return (
-    <nav className={`navbar light`}>
+    <nav className="navbar">
       <hr className="navbar-divider" />
 
       <div className="navbar-logo">
@@ -14,6 +15,14 @@ const Navbar = () => {
           alt="Website Logo"
           style={{ cursor: "pointer", height: "160px" }}
           onClick={() => (window.location.href = "/")}
+          className="light"
+        />
+        <img
+          src={logoDark}
+          alt="Website Logo"
+          style={{ cursor: "pointer", height: "160px" }}
+          onClick={() => (window.location.href = "/")}
+          className="dark"
         />
       </div>
       <hr className="divide"></hr>

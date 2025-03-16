@@ -18,8 +18,20 @@ body {
   position: relative; /* To position the divider correctly */
 }
 
+.navbar .dark {
+  display: none;
+}
+
+.dark .navbar .light {
+  display: none;
+}
+
+.dark .navbar .dark {
+  display: block;
+}
+
 .dark .navbar {
-  background-color: #005b60;
+  background-color: #02363d;
 }
 
 /* Horizontal Rule (Divider) Styling */
@@ -121,7 +133,13 @@ body {
 html {
   scroll-behavior: smooth;
 }
+
 .divide {
   width: 100%;
   margin-top: 20px;
+  border: 2px solid black;
+}
+
+.dark .divide {
+  border-color: white;
 }

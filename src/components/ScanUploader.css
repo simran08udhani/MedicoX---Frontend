@@ -4,7 +4,7 @@ body {
 }
 
 body.dark {
-  background-color: #ababab;
+  background-color: #02363d;
 }
 
 .upload-container {
@@ -15,6 +15,10 @@ body.dark {
   position: relative;
   margin-right: auto;
   margin-left: auto;
+}
+
+.dark .upload-container {
+  background-color: #02363d;
 }
 
 /* Scan Uploader Section */
@@ -31,6 +35,11 @@ body.dark {
   max-width: 1000px;
   height: 350px;
   position: relative;
+}
+
+.dark .scan-uploader {
+  background-color: #c6dad4;
+  color: black;
 }
 
 .scan-type {
@@ -56,13 +65,17 @@ body.dark {
   width: 2px;
   height: 350px;
   background: white;
-  border-left: 2px dashed white;
   margin: 0 20px;
+}
+
+.dark .divider {
+  background-color: black;
 }
 
 /* Import File Button */
 .import-btn,
-.upload-btn {
+.upload-btn,
+button {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -78,14 +91,29 @@ body.dark {
   justify-content: center;
 }
 
+.dark .import-btn,
+.dark .upload-btn,
+.dark button {
+  background-color: #176f6f;
+  color: white;
+}
+
 .import-btn:hover,
-.upload-btn:hover {
+.upload-btn:hover,
+button:hover {
   background: #f4e4a6;
+}
+
+.dark .import-btn:hover,
+.dark .upload-btn:hover,
+.dark button:hover {
+  background: #219f9f;
 }
 
 /* Upload Button Outside Box */
 /* Upload Button - Positioned Below Import Button */
-.upload-btn {
+.upload-btn,
+button {
   font-size: 15px;
 }
 
@@ -93,7 +121,7 @@ body.dark {
 .form-container,
 .disclaimer,
 .result-container {
-  margin-top: 20px;
+  margin: 30px auto;
   padding: 20px;
   background: #ffffff;
   color: #333;
@@ -103,6 +131,12 @@ body.dark {
   min-height: 350px;
   margin-left: auto;
   margin-right: auto;
+}
+
+.dark .form-container,
+.dark .disclaimer,
+.dark .result-container {
+  background-color: #c6dad4;
 }
 
 .form-container {
@@ -118,6 +152,7 @@ body.dark {
 
 .patient-form > div > label {
   display: block;
+  font-weight: 600;
 }
 
 /* Input Fields and Buttons */
@@ -148,7 +183,7 @@ input::placeholder {
   gap: 2px;
 }
 
-button {
+/* button {
   display: block;
   margin: 10px auto;
   padding: 10px;
@@ -167,9 +202,18 @@ button {
   padding: 10px;
 }
 
+.dark button {
+  background-color: #176f6f;
+  color: white;
+}
+
 button:hover {
   background: #f4e4a6;
 }
+
+.dark button:hover {
+  background: #219f9f;
+} */
 
 /* Scan Image */
 .scan-image {
@@ -188,6 +232,10 @@ button:hover {
   border-radius: 10px;
   overflow: hidden;
   margin: 10px auto;
+}
+
+.dark .progress-bar {
+  background-color: #d8e5e1;
 }
 
 .progress {
@@ -223,6 +271,7 @@ button:hover {
   margin-bottom: 10px;
   padding-left: 13px;
 }
+
 .or {
   display: flex;
   align-items: center;
@@ -231,14 +280,39 @@ button:hover {
   max-width: 150px;
   margin: auto;
 }
+
 .or hr {
   flex: 1;
 }
+
+.dark .or hr {
+  border-color: black;
+}
+
 input[type="radio"] {
   margin: 0;
   display: inline;
   width: auto;
   accent-color: #fff7d6;
+}
+
+input[type="checkbox"] {
+  accent-color: black;
+}
+
+.dark input[type="radio"],
+.dark input[type="checkbox"] {
+  accent-color: #176f6f;
+}
+
+.radio-tooltip {
+  background-color: "#fff7d6";
+  color: black;
+}
+
+.dark .radio-tooltip {
+  background-color: #176f6f;
+  color: white;
 }
 
 .disclaimer {
@@ -253,6 +327,7 @@ input[type="radio"] {
   font-size: 18.72px;
   justify-content: center;
   margin-bottom: 30px;
+  gap: 5px;
 }
 
 .disclaimer-form input {
@@ -279,8 +354,10 @@ input[type="radio"] {
 }
 
 .result-container .left img {
-  width: 503px;
-  height: 503px;
+  /* width: 503px;
+  height: 503px; */
+  width: 335px;
+  height: 335px;
   object-fit: cover;
 }
 
