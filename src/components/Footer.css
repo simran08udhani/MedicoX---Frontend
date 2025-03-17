@@ -128,7 +128,7 @@
   width: 180px; /* Adjust size as needed */
   height: 70px;
   margin-bottom: 10px;
-  margin: top -20px;
+  display: block;
 }
 
 .footer-logo.dark {
