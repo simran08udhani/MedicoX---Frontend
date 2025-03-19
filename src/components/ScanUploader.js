@@ -22,7 +22,7 @@ const ScanUploader = () => {
   });
   const [isChecked, setIsChecked] = useState(false);
   const [dragging, setDragging] = useState(false);
-  const [showTooltip, setShowTooltip] = useState(false);
+  // const [showTooltip, setShowTooltip] = useState(false);
   // const reportRef = useRef(null);
 
   const handleSelectedFile = (file) => {
@@ -57,7 +57,6 @@ const ScanUploader = () => {
     }
 
     setFile(file);
-    setShowTooltip(false);
   };
 
   // Handle file selection (import)
@@ -89,8 +88,10 @@ const ScanUploader = () => {
   // Handle upload button click
   const handleUpload = () => {
     if (!selectedScan) {
-      setShowTooltip(true); // Show tooltip if no scan type is selected
-      setTimeout(() => setShowTooltip(false), 2000); // Hide tooltip after 2 seconds
+      toast.error(
+        "Oops! Looks like you haven't selected a scan type. Please select the type of scan first.",
+        { style: { maxWidth: "700px" } }
+      );
       return;
     }
 
@@ -283,11 +284,11 @@ const ScanUploader = () => {
           </div>
 
           {/* Tooltip to prompt user to select a scan type after clicking "Import a File" */}
-          {showTooltip && !selectedScan && (
+          {/* {showTooltip && !selectedScan && (
             <span className="tooltip">
               ⚠️ Please select a scan type before uploading a file.
             </span>
-          )}
+          )} */}
         </div>
       )}
 
