@@ -146,13 +146,15 @@ const ScanUploader = () => {
     setIsChecked(event.target.checked);
   };
 
-  const submitFinal = () => {
+  const submitFinal = async () => {
     if (!isChecked) {
       toast.error("Please select the checkbox to proceed.", {
         style: { maxWidth: "700px" },
       });
       return;
     }
+    const result = await uploadMedicalScan(selectedScan, file);
+    console.log(result);
     setProgress(100);
     setStep(4);
   };
@@ -445,3 +447,56 @@ const ScanUploader = () => {
 };
 
 export default ScanUploader;
+
+async function uploadMedicalScan(scanType, imageFile, options = {}) {
+  const endpoints = {
+    CTScan: "/predict/ct-scan/",
+    MRI: "/predict/mri/",
+    Xray: "/predict/xray/",
+  };
+  if (!endpoints[scanType]) {
+    throw new Error(
+      `Invalid scan type: ${scanType}. Must be one of: ${Object.keys(
+        endpoints
+      ).join(", ")}`
+    );
+  }
+
+  const baseUrl = "https://127.0.0.1:8000/api";
+  const url = `${baseUrl}${endpoints[scanType]}`;
+
+  // Create FormData to handle file upload
+  const formData = new FormData();
+  formData.append("image", imageFile);
+
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        ...options.headers,
+      },
+      body: formData,
+    });
+
+    // Check if request was successful
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(
+        `API request failed with status ${response.status}: ${errorText}`
+      );
+    }
+
+    // Parse and return the JSON response
+    const data = await response.json();
+
+    // Validate that result property exists
+    if (!data.result) {
+      throw new Error('API response missing expected "result" property');
+    }
+
+    return data.result;
+  } catch (error) {
+    console.error(`Error uploading ${scanType}:`, error);
+    throw error;
+  }
+}
